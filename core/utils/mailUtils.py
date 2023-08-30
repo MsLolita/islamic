@@ -14,6 +14,9 @@ class MailUtils:
     def get_msg(self, to=None, subject=None, from_=None, seen=None, limit=None, reverse=True, delay=60):
         time.sleep(3)
         with MailBox(self.domain).login(self.email, self.imap_pass) as mailbox:
+            mailbox.folder.set('JUNK', True)
+            # print(mailbox.folder.list())
+            # print(mailbox.folder.get())
             for _ in range(delay // 3):
                 try:
                     time.sleep(3)
